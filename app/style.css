@@ -261,6 +261,7 @@ hr {
 
 ul.notes-list {
   padding: 16px 0;
+  width: 100%;
 }
 .notes-list > li {
   padding: 0 16px;

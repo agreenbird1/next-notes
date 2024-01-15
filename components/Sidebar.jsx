@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { getNotes } from '@/lib/mysql'
 import Image from 'next/image'
+import SidebarNoteList from '@/components/SidebarNoteList';
 
 export default async function Sidebar() {
   const [notes] = await getNotes()
@@ -24,6 +25,7 @@ export default async function Sidebar() {
         </Link>
         <section className="sidebar-menu" role="menubar">
           {/* SideSearchField */}
+          <SidebarNoteList notes={notes} />
         </section>
         <nav>{/* SidebarNoteList */}</nav>
       </section>
