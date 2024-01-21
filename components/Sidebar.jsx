@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import React, { Suspense } from 'react'
 import Link from 'next/link'
+import { useLocale } from 'next-intl'
 
 import Image from 'next/image'
 import SidebarNoteList from '@/components/SidebarNoteList'
@@ -10,6 +11,7 @@ import SidebarSearchField from '@/components/SidebarSearchField'
 
 export default async function Sidebar() {
   const t = await getTranslations('Basic')
+  const locale = useLocale()
   return (
     <>
       <section className="col sidebar">
@@ -43,6 +45,7 @@ export default async function Sidebar() {
             <SidebarNoteList />
           </Suspense>
         </nav>
+        <Link className="switch-link" href={locale === 'en' ? '/zh' : '/en'}>{t('switch-lang')}</Link>
       </section>
     </>
   )
