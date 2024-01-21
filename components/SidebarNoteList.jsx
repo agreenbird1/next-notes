@@ -1,9 +1,10 @@
-import { getNotes } from '@/lib/mysql'
+import main from '@/lib/mysql'
 import SidebarNoteItem from '@/components/SidebarNoteItem'
 
 export default async function NoteList() {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
-  await sleep(3000)
+  await sleep(1000)
+  const { getNotes } = await main()
   const [notes] = await getNotes()
   if (notes.length == 0) {
     return <div className="notes-empty">{'No notes created yet!'}</div>
