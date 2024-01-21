@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
 import { usePathname, useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 
-function Spinner({active = true}) {
+function Spinner({ active = true }) {
   return (
     <div
       className={['spinner', active && 'spinner--active'].join(' ')}
       role="progressbar"
       aria-busy={active ? 'true' : 'false'}
     />
-  );
+  )
 }
 
-export default function SidebarSearchField() {
+export default function SidebarSearchField({ search }) {
   const { replace } = useRouter()
   const pathname = usePathname()
   const [isPending, startTransition] = useTransition()
@@ -38,11 +38,11 @@ export default function SidebarSearchField() {
       </label>
       <input
         id="sidebar-search-input"
-        placeholder="Search"
+        placeholder={search}
         type="text"
         onChange={(e) => handleSearch(e.target.value)}
       />
       <Spinner active={isPending} />
     </div>
-  );
+  )
 }

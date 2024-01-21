@@ -4,13 +4,11 @@ import { useState } from 'react'
 import NotePreview from '@/components/NotePreview'
 import { useFormStatus } from 'react-dom'
 import Image from 'next/image'
-import { deleteNote, saveNote } from '../app/actions'
+import { deleteNote, saveNote } from '@/actions'
+import { useTranslations } from 'next-intl'
 
-export default function NoteEditor({
-  noteId,
-  initialTitle,
-  initialBody
-}) {
+export default function NoteEditor({ noteId, initialTitle, initialBody }) {
+  const t = useTranslations('Basic')
 
   const { pending } = useFormStatus()
   const [title, setTitle] = useState(initialTitle)
@@ -56,7 +54,7 @@ export default function NoteEditor({
               alt=""
               role="presentation"
             />
-            Done
+            {t('done')}
           </button>
           {!isDraft && (
             <button
@@ -72,12 +70,12 @@ export default function NoteEditor({
                 alt=""
                 role="presentation"
               />
-              Delete
+              {t("delete")}
             </button>
           )}
         </form>
         <div className="label label--preview" role="status">
-          Preview
+          {t("preview")}
         </div>
         <h1 className="note-title">{title}</h1>
         <NotePreview>{body}</NotePreview>
