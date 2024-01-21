@@ -1,5 +1,6 @@
 import main from '@/lib/mysql'
 import SidebarNoteItem from '@/components/SidebarNoteItem'
+import SidebarNoteListFilter from '@/components/SidebarNoteListFilter'
 
 export default async function NoteList() {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -11,14 +12,15 @@ export default async function NoteList() {
   }
 
   return (
-    <ul className="notes-list">
-      {notes.map((note) => {
-        return (
-          <li key={note.id}>
-            <SidebarNoteItem noteId={note.id} note={note} />
-          </li>
-        )
-      })}
-    </ul>
+    <SidebarNoteListFilter
+      notes={notes.map((note) => ({
+        id: note.id,
+        note: note,
+        // SidebarNoteItem 也是服务端组件，如果直接在filter中使用
+        // 那么所有的子级都会被认为是客户端组件，会导致打包体积增大
+        // 导致在SidebarNoteItem中之前抽离的依赖等无用
+        item: <SidebarNoteItem noteId={note.id} note={note} />,
+      }))}
+    />
   )
 }
