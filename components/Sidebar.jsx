@@ -8,6 +8,7 @@ import SidebarNoteList from '@/components/SidebarNoteList'
 import EditButton from '@/components/EditButton'
 import NoteListSkeleton from '@/components/NoteListSkeleton'
 import SidebarSearchField from '@/components/SidebarSearchField'
+import ImportMd from './ImportMd'
 
 export default async function Sidebar() {
   const t = await getTranslations('Basic')
@@ -29,10 +30,10 @@ export default async function Sidebar() {
           </section>
         </Link>
         <section className="sidebar-menu" role="menubar">
-          <SidebarSearchField search={t('search')} />
+          <SidebarSearchField search={t('search')} /><EditButton noteId={null}>{t('new')}</EditButton>
         </section>
         <section className="sidebar-menu" role="menubar">
-          <EditButton noteId={null}>{t('new')}</EditButton>
+            <ImportMd />
         </section>
         <nav>
           {/* 如果不使用suspense
