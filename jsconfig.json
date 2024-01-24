@@ -5,6 +5,7 @@
       "@/components/*": ["components/*"],
       "@/lib/*": ["lib/*"],
       "@/actions": ["app/[locale]/actions.js"],
+      "auth": ["./auth"]
     },
     "extensions": ["js", "jsx"]
   }
